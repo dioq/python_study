@@ -28,7 +28,7 @@ def get():
                 url_name.append([i, k])
                 print(i,k)
     for i in url_name:  # i[1]=url i[0]=name
-        urllib.request.urlretrieve(i[1], 'video\\%s.mp4' % (i[0]))
+        urllib.request.urlretrieve(i[1], 'video/%s.mp4' % (i[0]))
 
 
 if __name__ == "__main__":
