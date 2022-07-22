@@ -1,4 +1,4 @@
-#!/usr/local/Cellar/python@3.9/3.9.1_3/bin/python3
+#!/usr/bin/python3
 # -*- coding: utf-8 -*-
 
 # 上面两行注释的意义
