@@ -2,8 +2,9 @@
 
 import os
 
+
 def way01Func():
-    shell_file="./test.sh"
+    shell_file = "./test.sh"
     # 无法获得cmd命令的输出
     os.system(shell_file)
 
