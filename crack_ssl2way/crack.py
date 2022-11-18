@@ -21,7 +21,7 @@ openssl pkcs12 -in client.p12 -nocerts -nodes -out client.key
 
 # 获取自己的 ssl 证书
 def getSSLContext():
-    # CA_FILE = "../SSL_http/cert/ca/ca.cer"
+    # CA_FILE = "../https/cert/ca/ca.cer"
     KEY_FILE = "client.key"
     CERT_FILE = "client.pem"
 

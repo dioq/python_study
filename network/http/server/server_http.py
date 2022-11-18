@@ -39,26 +39,30 @@ def giveHtml():
 # 建立 giveGET 路由，回传 数据 和状态码 200
 @app.route("/get", methods=['GET'])
 def getNoParam():
-    return {"products": {"Message": "Get all products..", "output": output}}, 200
+    name = request.args.get('name')
+    if name == None:
+        name = "Noname"
+    print(name)
+    item = {'name': name, 'output': output}
+    return item, 200
 
 
 @app.route("/post", methods=['POST'])
 def postParamAsJson():
-    params = request.get_json()
+    print('data:', request.data)
+    params = request.get_json()  # 获取 json 格式数据
     print("param json:\n", params)
-    item = {'name': "Dio", 'output': output}
+    name = params["name"]  # 取其中的参数
+    item = {'name': name, 'output': output}
     # output.append(params)
     return item, 200
 
 
 @app.route("/postform", methods=['POST'])
 def postParamAsForm():
-    # 如果該品項不存在，則解析客戶端傳來的body，並將其品項寫入 items
-    params = request.form
-    print(params)
-    name = params["name"]
+    name = request.args.get('name')
     print(name)
-    item = {'name': "Dio", 'output': output}
+    item = {'name': name, 'output': output}
     return item, 200
 
 
@@ -76,4 +80,4 @@ def upload():
 
 
 if __name__ == "__main__":
-    app.run(host="127.0.0.1", port=8090, debug=True)
+    app.run(host="0.0.0.0", port=8090, debug=True)
