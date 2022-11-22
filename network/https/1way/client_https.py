@@ -3,11 +3,11 @@
 
 import urllib.request
 import ssl
-import requests
-import json
 
-https_get_url = "https://127.0.0.1:8091/get"
-https_post_url = "https://127.0.0.1:8091/post"
+# https_get_url = "https://127.0.0.1:8091/get"
+# https_post_url = "https://127.0.0.1:8091/post"
+https_get_url = "https://jobs8.cn:8091/get"
+https_post_url = "https://jobs8.cn:8091/post"
 
 '''
 SSL 单向验证, client 验证一下服务器传过来的证书 是不是 CA 机构颁发的. 客户端 是不用上传自己的证书的
@@ -76,5 +76,5 @@ def postFunc():
 
 
 if __name__ == '__main__':
-    # getFunc()
-    postFunc()
+    getFunc()
+    # postFunc()

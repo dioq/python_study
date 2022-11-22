@@ -4,6 +4,7 @@
 import urllib.request
 import ssl
 
+# https_get_url = "https://jobs8.cn:8092/get"
 https_get_url = "https://127.0.0.1:8092/get"
 https_post_url = "https://127.0.0.1:8092/post"
 
@@ -64,4 +65,4 @@ def postFunc():
 
 if __name__ == '__main__':
     getFunc()
-    postFunc()
+    # postFunc()
