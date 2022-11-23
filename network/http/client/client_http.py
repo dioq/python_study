@@ -1,12 +1,11 @@
 #!/usr/bin/python3
+# -*- coding: utf-8 -*-
 
 import json
-
 import requests
 
 http_get_url = "http://127.0.0.1:8090/get"
 http_post_url = "http://127.0.0.1:8090/post"
-http_post_formdata_url = "http://127.0.0.1:8090/postform"
 
 
 # 测试 get 请求
@@ -51,18 +50,20 @@ def postFunc():
         print("请求失败!")
 
 
-# 测试 post 请求 参数为 formdata
-def postFormdataFunc():
+# 测试 post 请求 url 和 body 里都有参数
+def postFunc2():
     headers = {
         "User-Agent": "iOS",
         "Accept-Encoding": "gzip, deflate, br",
         "Accept": "*/*",
-        "Content-Type": "multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW",
+        "Content-Type": "application/json",
         "Connection": "keep-alive"
     }
-    params = "name=JOJO&age=25"
-    # print(params)
-    response = requests.post(url=http_post_formdata_url, params=params, headers=headers)
+    newurl = http_post_url + "?name=JOJO&age=25"
+
+    param = {"name": "Dio", "age": 25}
+    data = json.dumps(param)
+    response = requests.post(url=newurl, data=data, headers=headers, verify=False)  # 不验证 服务器 ssl 证书
     if response.status_code == 200:
         print("请求成功!")
         print(response.text)
@@ -72,6 +73,6 @@ def postFormdataFunc():
 
 
 if __name__ == "__main__":
-    getFunc()
-    postFunc()
-    postFormdataFunc()
+    # getFunc()
+    # postFunc()
+    postFunc2()

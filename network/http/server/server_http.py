@@ -30,7 +30,7 @@ output = [
 ]
 
 
-# 建立根目錄路由，並輸出文字
+# 建立根目录路由，并输出文字
 @app.route("/", methods=['GET'])
 def giveHtml():
     return "<h1>Hello , This a Restful Api Server by Flask...</h1>"
@@ -38,9 +38,9 @@ def giveHtml():
 
 # 建立 giveGET 路由，回传 数据 和状态码 200
 @app.route("/get", methods=['GET'])
-def getNoParam():
-    name = request.args.get('name')
-    if name == None:
+def getTest():
+    name = request.args.get('name')  # 获取 url 上传过来的参数,对 post请求也适用
+    if name is None:
         name = "Noname"
     print(name)
     item = {'name': name, 'output': output}
@@ -49,19 +49,15 @@ def getNoParam():
 
 @app.route("/post", methods=['POST'])
 def postParamAsJson():
-    print('data:', request.data)
-    params = request.get_json()  # 获取 json 格式数据
-    print("param json:\n", params)
-    name = params["name"]  # 取其中的参数
-    item = {'name': name, 'output': output}
-    # output.append(params)
-    return item, 200
+    name1 = request.args.get('name')  # 获取 url 上传过来的参数,对 post请求也适用
 
-
-@app.route("/postform", methods=['POST'])
-def postParamAsForm():
-    name = request.args.get('name')
-    print(name)
+    print("args name1:", name1)
+    print("request.data:", request.data)
+    params_json = request.get_json()  # 获取 json 格式数据
+    print("request.get_json():\n", params_json)
+    name = params_json["name"]  # 取其中的参数
+    if name1 is not None:
+        name = name1 + name
     item = {'name': name, 'output': output}
     return item, 200
 
