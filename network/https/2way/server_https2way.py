@@ -45,7 +45,7 @@ output = [
 # 建立 giveGET 路由，回传 数据 和状态码 200
 @app.route("/get", methods=['GET'])
 def getNoParam():
-    return {"products": {"Message": "get request is suucess!", "output": output}}, 200
+    return {"products": {"Message": "get request is success!", "output": output}}, 200
 
 
 @app.route("/post", methods=['POST'])
