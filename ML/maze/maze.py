@@ -1,4 +1,6 @@
 __author__ = 'alan'
+
+import sys
 from random import randrange, shuffle
 from mouse import *
 
