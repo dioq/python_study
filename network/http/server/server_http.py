@@ -3,6 +3,9 @@
 
 # 导入Flask套件
 from flask import Flask, request, send_from_directory
+"""
+pip install -U Flask 
+"""
 
 # 处理上传的文件
 import os
