@@ -16,12 +16,13 @@ def getSSLContext():
 
     context = ssl.SSLContext(ssl.PROTOCOL_TLS_SERVER)
     context.check_hostname = False
-    context.load_cert_chain(certfile=CERT_FILE, keyfile=KEY_FILE, password="zxcvbnm,.")
+    context.load_cert_chain(certfile=CERT_FILE, keyfile=KEY_FILE, password="C81FCCE046EE94EA")
     context.load_verify_locations(CA_FILE)
-    context.verify_mode = ssl.CERT_REQUIRED # 需要客户端上传证书, 服务器验证客户端证书
+    context.verify_mode = ssl.CERT_REQUIRED  # 需要客户端上传证书, 服务器验证客户端证书
     # 证书密码:zxcvbnm,.
 
     return context
+
 
 # 创建 output 输出内容
 output = [
