@@ -15,8 +15,6 @@ def index():
 
 @app.route("/install/<filename>", methods=["GET"])
 def download(filename):
-    # return "This is a test string."
-    # return send_from_directory(path="./files/", directory="./files/", filename=filename, as_attachment=True)
     file_path = "./files/" + filename
     file = Path(file_path)
     return send_file(file, as_attachment=True)
@@ -24,8 +22,6 @@ def download(filename):
 
 @app.route("/download.plist", methods=["GET"])
 def plist():
-    # return "22 This is a test string."
-    # return send_from_directory(path="files/", directory="./files/", filename="download.plist", as_attachment=True)
     file_path = "./files/download.plist"
     file = Path(file_path)
     return send_file(file, as_attachment=True)
