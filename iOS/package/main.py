@@ -13,16 +13,9 @@ def index():
     return render_template(path)  # 加入变量传递
 
 
-@app.route("/install/<filename>", methods=["GET"])
+@app.route("/download/<filename>", methods=["GET"])
 def download(filename):
     file_path = "./files/" + filename
-    file = Path(file_path)
-    return send_file(file, as_attachment=True)
-
-
-@app.route("/download.plist", methods=["GET"])
-def plist():
-    file_path = "./files/download.plist"
     file = Path(file_path)
     return send_file(file, as_attachment=True)
 
