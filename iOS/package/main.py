@@ -1,6 +1,8 @@
 #!/usr/bin/python3
 # -*- coding: utf-8 -*-
-from flask import Flask, render_template, send_from_directory
+from pathlib import Path
+
+from flask import Flask, render_template, send_file
 
 app = Flask(__name__)
 
@@ -13,12 +15,20 @@ def index():
 
 @app.route("/install/<filename>", methods=["GET"])
 def download(filename):
-    return send_from_directory(path="./files/", directory="./files/", filename=filename, as_attachment=True)
+    # return "This is a test string."
+    # return send_from_directory(path="./files/", directory="./files/", filename=filename, as_attachment=True)
+    file_path = "./files/" + filename
+    file = Path(file_path)
+    return send_file(file, as_attachment=True)
 
 
 @app.route("/download.plist", methods=["GET"])
 def plist():
-    return send_from_directory(path="./files/", directory="./files/", filename="download.plist", as_attachment=True)
+    # return "22 This is a test string."
+    # return send_from_directory(path="files/", directory="./files/", filename="download.plist", as_attachment=True)
+    file_path = "./files/download.plist"
+    file = Path(file_path)
+    return send_file(file, as_attachment=True)
 
 
 # 实现通过浏览器下载并安装 安装包

@@ -1,15 +1,16 @@
 #!/usr/bin/python3
 # -*- coding: utf-8 -*-
 
-from flask import Flask, request
 # SSL 证书
 import ssl
+
+from flask import Flask, request
 
 # 创建Flask app物件
 app = Flask(__name__)
 
 
-def getSSLContext():
+def get_ssl_context():
     CA_FILE = "../cert/ca/ca.cer"
     KEY_FILE = "../cert/server/server.key"
     CERT_FILE = "../cert/server/server.cer"
@@ -45,12 +46,12 @@ output = [
 
 # 建立 giveGET 路由，回传 数据 和状态码 200
 @app.route("/get", methods=['GET'])
-def getNoParam():
+def get_no_param():
     return {"products": {"Message": "get request is success!", "output": output}}, 200
 
 
 @app.route("/post", methods=['POST'])
-def postParamAsJson():
+def post_param_json():
     print('data:', request.data)
     params = request.get_json()  # 获取 json 格式数据
     print("param json:\n", params)
@@ -61,5 +62,5 @@ def postParamAsJson():
 
 
 if __name__ == "__main__":
-    context = getSSLContext()
+    context = get_ssl_context()
     app.run(host="0.0.0.0", port=8092, ssl_context=context)
