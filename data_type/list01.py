@@ -1,4 +1,5 @@
-# -*- coding: utf-8 -*-
+#!/usr/bin/python3
+# -*- coding: UTF-8 -*-
 
 # 以16进制打印 list
 def list_to_hex_string(list_data):
@@ -11,26 +12,8 @@ def list_to_hex_string(list_data):
     return list_str
 
 
-# string转bytes
-def str_2_bytes():
-    test_str = "abcdef"
-    # 字符串转成 byte数组
-    test_bytes = bytes(test_str, encoding="utf8")
-    for item in test_bytes:
-        print(item)
-
-
-# bytes转string
-def bytes_2_str():
-    test_str = "abcdef"
-    test_bytes = bytes(test_str, encoding="utf8")
-    # byte数组 转字符串
-    new_test_str = str(test_bytes, encoding='utf-8')
-    print(new_test_str)
-
-
-# list 使用
-def list_study():
+# list 尾部追加
+def list_append():
     # 定义一个list
     l1 = []
     for i in range(0, 10):
@@ -61,8 +44,6 @@ def list_2_bytes():
 
 
 if __name__ == '__main__':
-    str_2_bytes()
-    bytes_2_str()
-    list_study()
+    list_append()
     # bytes_2_list()
     # list_2_bytes()

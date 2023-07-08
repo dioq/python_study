@@ -2,6 +2,7 @@
 
 import time
 
+
 def func2(args):  # multiple parameters (arguments)
     # x, y = args
     x = args[0]  # write in this way, easier to locate errors
@@ -23,5 +24,6 @@ def run__pool():  # main process
         outputs = p.map(func2, process_args)
     print(f'| outputs: {outputs}    TimeUsed: {time.time() - start_time:.1f}\n')
 
-if __name__ =='__main__':
+
+if __name__ == '__main__':
     run__pool()

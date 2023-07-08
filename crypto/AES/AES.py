@@ -1,5 +1,7 @@
-# -*- coding: utf-8 -*-
+#!/usr/bin/python3
+# -*- coding: UTF-8 -*-
 from Crypto.Cipher import AES
+
 """
 pip3 install pycryptodome
 """
