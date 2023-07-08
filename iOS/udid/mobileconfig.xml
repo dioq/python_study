@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN"  "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
     <dict>
         <key>PayloadContent</key>
         <dict>
             <key>URL</key>
             <!--接收数据的接口地址-->
-            <string>https://jobs8.cn:9000/download/parse_udid</string>
+            <string>https://jobs8.cn:9000/get_udid</string>
             <key>DeviceAttributes</key>
             <array>
                 <string>UDID</string>

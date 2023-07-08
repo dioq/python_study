@@ -1,9 +1,11 @@
 #!/usr/bin/python3
 # -*- coding: utf-8 -*-
 from pathlib import Path
-from urllib import request
 
-from flask import Flask, render_template, send_file
+import requests
+from flask import Flask, render_template, send_file, Response
+
+# from iOS.udid.main import xml_path
 
 app = Flask(__name__)
 
@@ -21,12 +23,26 @@ def download(filename):
     return send_file(file, as_attachment=True)
 
 
-@app.route('/parse_udid', methods=['GET', 'POST'])
-def parse_udid():
+@app.route('/down_config/', methods=['GET', 'POST'])
+def down_config():
     """
-    解析获取udid数据
+    ios设备访问下载配置文件
     """
-    new_test_str = str(request.data, encoding='utf-8')
+    def file_content(f_p):
+        with open(f_p, 'rb') as f:
+            return f.readlines()
+    filename="udid.mobileconfig"
+    file_path = "./files/udid.mobileconfig"
+    response = Response(file_content(file_path))
+    # 这里的Content-Type一定要设置为application/x-apple-aspen-config
+    response.headers['Content-Type'] = 'application/x-apple-aspen-config; chatset=utf-8'
+    response.headers['Content-Disposition'] = 'attachment;filename="{}"'.format(filename)
+    return response
+
+
+@app.route("/get_udid", methods=["GET", "POST"])
+def get_udid():
+    new_test_str = str(requests.data, encoding='utf-8')
     print(new_test_str)
 
 
