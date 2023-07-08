@@ -21,7 +21,7 @@ def download(filename):
     return send_file(file, as_attachment=True)
 
 
-@app.route('/down_config/', methods=['GET', 'POST'])
+@app.route('/down_config', methods=['GET', 'POST'])
 def down_config():
     """
     ios设备访问下载配置文件
@@ -50,7 +50,7 @@ def get_udid():
     print(new_test_str)
     return "hello, go here"
 
-# @app.route('/get_udid/', methods=['GET', 'POST'])
+# @app.route('/get_udid', methods=['GET', 'POST'])
 # def get_udid():
 #     """
 #     获取设备返回的值
