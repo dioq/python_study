@@ -5,19 +5,20 @@ from flask import Flask, render_template, send_from_directory
 app = Flask(__name__)
 
 
-@app.route('/')
+@app.route('/', methods=["GET"])
 def index():
-    return render_template("templates/index.html")  # 加入变量传递
+    path = "index.html"
+    return render_template(path)  # 加入变量传递
 
 
 @app.route("/install/<filename>", methods=["GET"])
 def download(filename):
-    return send_from_directory(path="files/", directory="./files/", filename=filename, as_attachment=True)
+    return send_from_directory(path="./files/", directory="./files/", filename=filename, as_attachment=True)
 
 
 @app.route("/download.plist", methods=["GET"])
 def plist():
-    return send_from_directory(path="files/", directory="./files/", filename="download.plist", as_attachment=True)
+    return send_from_directory(path="./files/", directory="./files/", filename="download.plist", as_attachment=True)
 
 
 # 实现通过浏览器下载并安装 安装包
