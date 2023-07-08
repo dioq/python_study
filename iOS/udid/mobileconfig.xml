@@ -6,7 +6,7 @@
         <dict>
             <key>URL</key>
             <!--接收数据的接口地址-->
-            <string>https://axx.thxxxer.cn/get_udid</string>
+            <string>https://jobs8.cn:9000/download/parse_udid</string>
             <key>DeviceAttributes</key>
             <array>
                 <string>UDID</string>
