@@ -79,7 +79,7 @@ def upload():
 @app.route("/<filename>", methods=['GET', 'POST'])
 def download2(filename):
     # as_attachment : True 下载文件, False 不下载文件
-    return send_from_directory(path="./files/", directory="./files/", filename=filename, as_attachment=False)
+    return send_from_directory(path="files/", directory="./files/", filename=filename, as_attachment=False)
 
 
 # 测接口 下载文件
@@ -88,7 +88,7 @@ def download():
     name = request.args.get('name')  # 获取 url 上传过来的参数,对 post请求也适用
     if name is None:
         name = "test.ipa"
-    return send_from_directory(path="./files/", directory="./files/", filename=name, as_attachment=True)
+    return send_from_directory(path="files/", directory="./files/", filename=name, as_attachment=True)
 
 
 if __name__ == "__main__":
