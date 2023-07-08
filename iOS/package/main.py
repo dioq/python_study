@@ -42,28 +42,31 @@ def down_config():
     return response
 
 
-# @app.route("/get_udid", methods=["GET", "POST"])
-# def get_udid():
-#     print(request.data)
-#     new_test_str = str(request.data, encoding='utf-8')
-#     print(new_test_str)
-@app.route('/get_udid/', methods=['GET', 'POST'])
+@app.route("/get_udid", methods=["GET", "POST"])
 def get_udid():
-    """
-    获取设备返回的值
-    """
-    print("get_udid -----------> go here")
+    print(request.data)
+
+    new_test_str = str(request.data, encoding='utf-8')
+    print(new_test_str)
     return "hello, go here"
-    # global udid_l
-    # b_data = request.data
-    # data_str = str(b_data).split('<?xml')[-1].split('</plist>')[0].split('dict')[1].replace('\\n', '').replace('\\t', '')\
-    #     .replace('>', '').replace('<', '').replace('/', '').replace('string', '').split('key')
-    # udid = data_str[4]
-    # product = app.get_phone(data_str[2])
-    # version = data_str[6]
-    # udid_l = [udid, product, version]
-    # # 这里一定要对301进行重定向
-    # return redirect(url_for('ios_udid.show_udid'), code=301)
+
+# @app.route('/get_udid/', methods=['GET', 'POST'])
+# def get_udid():
+#     """
+#     获取设备返回的值
+#     """
+#     print("get_udid -----------> go here")
+#     # return "hello, go here"
+#     # global udid_l
+#     # b_data = request.data
+#     # data_str = str(b_data).split('<?xml')[-1].split('</plist>')[0].split('dict')[1].replace('\\n', '').replace('\\t', '')\
+#     #     .replace('>', '').replace('<', '').replace('/', '').replace('string', '').split('key')
+#     # udid = data_str[4]
+#     # product = app.get_phone(data_str[2])
+#     # version = data_str[6]
+#     # udid_l = [udid, product, version]
+#     # # 这里一定要对301进行重定向
+#     # return redirect(url_for('ios_udid.show_udid'), code=301)
 
 
 # 实现通过浏览器下载并安装 安装包
