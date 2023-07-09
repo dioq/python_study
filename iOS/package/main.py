@@ -16,6 +16,7 @@ def index():
 
 @app.route("/download/<filename>", methods=["GET"])
 def download(filename):
+    print("download ---------> go here || " + filename)
     file_path = "./files/" + filename
     file = Path(file_path)
     return send_file(file, as_attachment=True)
@@ -26,13 +27,13 @@ def down_config():
     """
     ios设备访问下载配置文件
     """
-
+    print("down_config ---------> go here")
     def file_content(f_p):
         with open(f_p, 'rb') as f:
             return f.readlines()
 
     filename = "mobileconfig.xml"
-    file_path = "files/mobileconfig.xml"
+    file_path = "./files/mobileconfig.xml"
     response = Response(file_content(file_path))
     print(response)
     # 这里的Content-Type一定要设置为application/x-apple-aspen-config
