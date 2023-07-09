@@ -76,7 +76,7 @@ def get_udid():
                                                                                                                '') \
         .replace('>', '').replace('<', '').replace('/', '').replace('string', '').split('key')
     udid = data_str[4]
-    product = "iPhone 7"
+    product = data_str[2]
     version = data_str[6]
     udid_l = [udid, product, version]
     # 这里一定要对301进行重定向
