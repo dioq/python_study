@@ -26,6 +26,10 @@ def get_udid():
     """
     获取设备返回的值
     """
+    f = open("device.xml", "wb")
+    f.write(request.data)
+    f.close()
+
     global device_info
     b_data = request.data
     data_str = str(b_data).split('<?xml')[-1].split('</plist>')[0].split('dict')[1].replace('\\n', '').replace('\\t',
