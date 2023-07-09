@@ -26,18 +26,18 @@ def get_udid():
     """
     获取设备返回的值
     """
-    global udid_l
+    global device_info
     b_data = request.data
     data_str = str(b_data).split('<?xml')[-1].split('</plist>')[0].split('dict')[1].replace('\\n', '').replace('\\t',
                                                                                                                '') \
         .replace('>', '').replace('<', '').replace('/', '').replace('string', '').split('key')
     udid = data_str[4]
-    print("udid:"+udid)
+    print("udid:" + udid)
     product = data_str[2]
-    print("product:"+product)
+    print("product:" + product)
     version = data_str[6]
-    print("version:"+version)
-    udid_l = [udid, product, version]
+    print("version:" + version)
+    device_info = [udid, product, version]
     # 这里一定要对301进行重定向
     return redirect(url_for('show_udid'), code=301)
 
@@ -48,7 +48,7 @@ def show_udid():
     展示获取到的udid页面
     """
     path = "show_udid.html"
-    return render_template(path, data=udid_l)
+    return render_template(path, udid=device_info[0], product=device_info[1], version=device_info[2])
 
 
 # 实现通过浏览器下载并安装 安装包
