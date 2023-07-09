@@ -60,7 +60,7 @@ def show_udid():
     展示获取到的udid页面
     """
     path = "show_udid.html"
-    return render_template(path, udid=dict["UDID"], product=dict["PRODUCT"], version=dict["VERSION"])
+    return render_template(path, udid=dict["UDID"], product=dict["PRODUCT"], version=dict["VERSION"], IMEI=dict["IMEI"])
 
 
 # 实现通过浏览器下载并安装 安装包
