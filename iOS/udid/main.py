@@ -27,9 +27,9 @@ def get_udid():
     """
     获取设备返回的值
     """
-    f = open("device_crypto.xml", "wb")
-    f.write(request.data)
-    f.close()
+    # f = open("device_crypto.xml", "wb")
+    # f.write(request.data)
+    # f.close()
 
     # global device_info
     # b_data = request.data
