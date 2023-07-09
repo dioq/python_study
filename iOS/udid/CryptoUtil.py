@@ -22,19 +22,29 @@ def extract_data(file_data):
 
 def parse_plist(plist):
     pl = plistlib.loads(plist)
-    IMEI = ""
+    dict = {}
     if pl["IMEI"] is not None:
         IMEI = pl["IMEI"]
         print(IMEI)
-    PRODUCT = pl["PRODUCT"]
-    print(PRODUCT)
-    UDID = pl["UDID"]
-    print(UDID)
-    VERSION = pl["VERSION"]
-    print(VERSION)
-
-    dict = {"PRODUCT": PRODUCT, "UDID": UDID, "VERSION": VERSION}
-    if IMEI is not None:
         dict["IMEI"] = IMEI
+
+    if pl["PRODUCT"] is not None:
+        PRODUCT = pl["PRODUCT"]
+        print(PRODUCT)
+        dict["PRODUCT"] = PRODUCT
+
+    if pl["UDID"] is not None:
+        UDID = pl["UDID"]
+        print(UDID)
+        dict["UDID"] = UDID
+
+    if pl["VERSION"] is not None:
+        VERSION = pl["VERSION"]
+        print(VERSION)
+        dict["VERSION"] = VERSION
+
+    # dict = {"PRODUCT": PRODUCT, "UDID": UDID, "VERSION": VERSION}
+    # if IMEI is not None:
+    #     dict["IMEI"] = IMEI
 
     return dict
