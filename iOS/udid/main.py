@@ -17,7 +17,6 @@ def index():
 
 @app.route("/download/<filename>", methods=["GET"])
 def download(filename):
-    print("download ---------> go here || " + filename)
     file_path = "./files/" + filename
     file = Path(file_path)
     return send_file(file, as_attachment=True)
