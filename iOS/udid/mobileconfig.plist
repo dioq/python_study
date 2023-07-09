@@ -18,7 +18,7 @@
         </dict>
         <key>PayloadOrganization</key>
         <!--组织名称-->
-        <string>com.cover.the</string>
+        <string>Apple</string>
         <key>PayloadDisplayName</key>
         <!--文件标题-->
         <string>获取UDID</string>

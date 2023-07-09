@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 from pathlib import Path
 
-from flask import Flask, render_template, send_file, make_response, request, redirect, url_for
+from flask import Flask, render_template, send_file, request, redirect, url_for
 
 app = Flask(__name__)
 
