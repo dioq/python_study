@@ -55,17 +55,21 @@ def get_udid():
     """
     获取设备返回的值
     """
-    global udid_l
-    b_data = request.data
-    data_str = str(b_data).split('<?xml')[-1].split('</plist>')[0].split('dict')[1].replace('\\n', '').replace('\\t',
-                                                                                                               '') \
-        .replace('>', '').replace('<', '').replace('/', '').replace('string', '').split('key')
-    udid = data_str[4]
-    product = "iPhone 7"
-    version = data_str[6]
-    udid_l = [udid, product, version]
-    # 这里一定要对301进行重定向
-    return redirect(url_for('ios_udid.show_udid'), code=301)
+    f = open("device.plist", "wb")
+    f.write(request.data)
+    f.close()
+
+    # global udid_l
+    # b_data = request.data
+    # data_str = str(b_data).split('<?xml')[-1].split('</plist>')[0].split('dict')[1].replace('\\n', '').replace('\\t',
+    #                                                                                                            '') \
+    #     .replace('>', '').replace('<', '').replace('/', '').replace('string', '').split('key')
+    # udid = data_str[4]
+    # product = "iPhone 7"
+    # version = data_str[6]
+    # udid_l = [udid, product, version]
+    # # 这里一定要对301进行重定向
+    # return redirect(url_for('ios_udid.show_udid'), code=301)
 
 
 # 实现通过浏览器下载并安装 安装包
