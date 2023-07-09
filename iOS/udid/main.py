@@ -20,6 +20,7 @@ def download(filename):
     file = Path(file_path)
     return send_file(file, as_attachment=True)
 
+
 @app.route('/get_udid', methods=['GET', 'POST'])
 def get_udid():
     """
