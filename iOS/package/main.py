@@ -65,7 +65,7 @@ def get_udid():
 #     # product = app.get_phone(data_str[2])
 #     # version = data_str[6]
 #     # udid_l = [udid, product, version]
-#     # # 这里一定要对301进行重定向
+#     # 这里一定要对301进行重定向
 #     # return redirect(url_for('ios_udid.show_udid'), code=301)
 
 
