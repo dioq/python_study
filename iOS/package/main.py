@@ -31,8 +31,8 @@ def down_config():
         with open(f_p, 'rb') as f:
             return f.readlines()
 
-    filename = "udid.mobileconfig"
-    file_path = "./files/udid.mobileconfig"
+    filename = "mobileconfig.xml"
+    file_path = "files/mobileconfig.xml"
     response = Response(file_content(file_path))
     print(response)
     # 这里的Content-Type一定要设置为application/x-apple-aspen-config
@@ -70,7 +70,7 @@ def get_udid():
     version = data_str[6]
     udid_l = [udid, product, version]
     # 这里一定要对301进行重定向
-    return redirect(url_for('ios_udid.show_udid'), code=301)
+    return redirect(url_for('show_udid'), code=301)
 
 
 @app.route('/show_udid/', methods=['GET', 'POST'])
