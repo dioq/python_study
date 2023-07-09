@@ -2,7 +2,6 @@
 # -*- coding: utf-8 -*-
 from pathlib import Path
 
-import requests
 from flask import Flask, render_template, send_file, Response, request, redirect, url_for
 
 app = Flask(__name__)
@@ -28,6 +27,7 @@ def down_config():
     ios设备访问下载配置文件
     """
     print("down_config ---------> go here")
+
     def file_content(f_p):
         with open(f_p, 'rb') as f:
             return f.readlines()
@@ -51,12 +51,16 @@ def down_config():
 #     print(new_test_str)
 #     return "hello, go here"
 
+class BeautifulSoup:
+    pass
+
+
 @app.route('/get_udid', methods=['GET', 'POST'])
 def get_udid():
     """
     获取设备返回的值
     """
-    # f = open("device.html", "wb")
+    # f = open("device.plist", "wb")
     # f.write(request.data)
     # f.close()
     print("get_udid -------------> go here")
@@ -74,7 +78,7 @@ def get_udid():
     return redirect(url_for('show_udid'), code=301)
 
 
-@app.route('/show_udid/', methods=['GET', 'POST'])
+@app.route('/show_udid', methods=['GET', 'POST'])
 def show_udid():
     """
     展示获取到的udid页面
