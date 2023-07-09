@@ -9,7 +9,7 @@ app = Flask(__name__)
 
 @app.route('/', methods=["GET"])
 def index():
-    path = "templates/index.html"
+    path = "index.html"
     return render_template(path)  # 加入变量传递
 
 
