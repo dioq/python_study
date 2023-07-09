@@ -77,9 +77,43 @@ def directory_delete():
     shutil.rmtree("./tmp1")  # 空目录、有内容的目录都可以删
 
 
+# 一次读取全部文件
+def read_file1():
+    f = open("test2.txt", "r")
+    # read()            方法表示一次读取文件全部内容，该方法返回字符串。
+    lines = f.read()
+    print(lines)
+    print(type(lines))
+    f.close()
+
+
+def read_file2():
+    f = open("test2.txt", "r")
+    # readline()        每次读出一行内容，读取时占用内存小，比较适合大文件，该方法返回一个字符串对象
+    line = f.readline()
+    while line:
+        print(line)
+        print(type(line))
+        line = f.readline()
+    f.close()
+
+
+def read_file3():
+    f = open("test2.txt", "r")
+    # readlines()       读取整个文件所有行，保存在一个列表(list)变量中，每次读取一行，但读取大文件会比较占内存。
+    lines = f.readlines()
+    for line in lines:
+        print(line)
+        print(type(line))
+    f.close()
+
+
 if __name__ == "__main__":
+    # read_file3()
+    # read_file2()
+    read_file1()
     # write_string()
-    write_binary()
+    # write_binary()
     # file_delete()
     # directory_create()
     # directory_delete()

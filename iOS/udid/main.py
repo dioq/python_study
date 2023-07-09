@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 from pathlib import Path
 
-from flask import Flask, render_template, send_file, Response, request, redirect, url_for
+from flask import Flask, render_template, send_file, make_response, request, redirect, url_for
 
 app = Flask(__name__)
 
@@ -28,18 +28,25 @@ def down_config():
     """
     print("down_config ---------> go here")
 
-    def file_content(f_p):
-        with open(f_p, 'rb') as f:
-            return f.readlines()
-
+    # def file_content(f_p):
+    #     with open(f_p, 'rb') as f:
+    #         return f.readlines()
+    #
     filename = "mobileconfig.xml"
     file_path = "./files/mobileconfig.xml"
-    response = Response(file_content(file_path))
-    print(response)
+    # response = Response(file_content(file_path))
+    # print(response)
+    f = open(file_path, "r")
+    lines = f.read()
+    print(lines)
+    print(type(lines))
+    response = make_response(lines)
     # 这里的Content-Type一定要设置为application/x-apple-aspen-config
     response.headers['Content-Type'] = 'application/x-apple-aspen-config; chatset=utf-8'
     response.headers['Content-Disposition'] = 'attachment;filename="{}"'.format(filename)
     print(response)
+
+    f.close()
     return response
 
 
