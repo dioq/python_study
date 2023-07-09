@@ -32,11 +32,11 @@ def get_udid():
                                                                                                                '') \
         .replace('>', '').replace('<', '').replace('/', '').replace('string', '').split('key')
     udid = data_str[4]
-    print(udid)
+    print("udid:"+udid)
     product = data_str[2]
-    print(product)
+    print("product:"+product)
     version = data_str[6]
-    print(version)
+    print("version:"+version)
     udid_l = [udid, product, version]
     # 这里一定要对301进行重定向
     return redirect(url_for('show_udid'), code=301)
