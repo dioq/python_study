@@ -60,12 +60,11 @@ def show_udid():
     展示获取到的udid页面
     """
 
-    print("222 ---------> " + dict)
     exist = dict.__contains__("IMEI")
     if exist:
-        IMEI = "null"
-    else:
         IMEI = dict["IMEI"]
+    else:
+        IMEI = "null"
 
     path = "show_udid.html"
     return render_template(path, udid=dict["UDID"], product=dict["PRODUCT"], version=dict["VERSION"], IMEI=IMEI)
