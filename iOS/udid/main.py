@@ -60,6 +60,7 @@ def show_udid():
     展示获取到的udid页面
     """
 
+    print("222 ---------> " + dict)
     exist = dict.__contains__("IMEI")
     if exist:
         IMEI = "null"

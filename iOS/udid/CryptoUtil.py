@@ -22,6 +22,7 @@ def extract_data(file_data):
 
 def parse_plist(plist):
     pl = plistlib.loads(plist)
+    print(pl)
     # dict = {}
     # if pl["IMEI"] is not None:
     #     IMEI = pl["IMEI"]
