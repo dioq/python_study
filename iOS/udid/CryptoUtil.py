@@ -22,29 +22,36 @@ def extract_data(file_data):
 
 def parse_plist(plist):
     pl = plistlib.loads(plist)
-    dict = {}
-    if pl["IMEI"] is not None:
-        IMEI = pl["IMEI"]
-        print(IMEI)
-        dict["IMEI"] = IMEI
-
-    if pl["PRODUCT"] is not None:
-        PRODUCT = pl["PRODUCT"]
-        print(PRODUCT)
-        dict["PRODUCT"] = PRODUCT
-
-    if pl["UDID"] is not None:
-        UDID = pl["UDID"]
-        print(UDID)
-        dict["UDID"] = UDID
-
-    if pl["VERSION"] is not None:
-        VERSION = pl["VERSION"]
-        print(VERSION)
-        dict["VERSION"] = VERSION
-
-    # dict = {"PRODUCT": PRODUCT, "UDID": UDID, "VERSION": VERSION}
-    # if IMEI is not None:
+    # dict = {}
+    # if pl["IMEI"] is not None:
+    #     IMEI = pl["IMEI"]
+    #     print(IMEI)
     #     dict["IMEI"] = IMEI
+    #
+    # if pl["PRODUCT"] is not None:
+    #     PRODUCT = pl["PRODUCT"]
+    #     print(PRODUCT)
+    #     dict["PRODUCT"] = PRODUCT
+    #
+    # if pl["UDID"] is not None:
+    #     UDID = pl["UDID"]
+    #     print(UDID)
+    #     dict["UDID"] = UDID
+    #
+    # if pl["VERSION"] is not None:
+    #     VERSION = pl["VERSION"]
+    #     print(VERSION)
+    #     dict["VERSION"] = VERSION
 
-    return dict
+    # return dict
+    return pl
+
+
+# if __name__ == '__main__':
+#     f = open("/Users/lzd/Desktop/device.xml","rb")
+#     file_data = f.read()
+#     f.close()
+#
+#     plaintext_data = extract_data(file_data)
+#     dict = parse_plist(plaintext_data)
+#     print(dict)

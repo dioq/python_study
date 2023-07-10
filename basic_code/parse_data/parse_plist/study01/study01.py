@@ -27,6 +27,10 @@ def parse_plist():
     pl = plistlib.loads(plist)
     print(pl["foo"])
 
+    print(pl)
+    for key in pl:
+        print(key)
+
 
 if __name__ == '__main__':
     # make_plist()

@@ -59,7 +59,9 @@ def show_udid():
     """
     展示获取到的udid页面
     """
-    if dict["IMEI"] is None:
+
+    exist = dict.__contains__("IMEI")
+    if exist:
         IMEI = "null"
     else:
         IMEI = dict["IMEI"]
