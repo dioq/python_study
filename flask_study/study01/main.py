@@ -15,7 +15,7 @@ def index():
     return response
 
 
-@app.route('/2')
+@app.route('/t1')
 def test02():
     test_str = "abcdef"
     # 字符串转成 byte数组

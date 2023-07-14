@@ -2,10 +2,34 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>详情页</title>
+    <title>往Html传数据</title>
 </head>
 <body>
-<p>用户: {{ username }}</p>
-<h1>地址: {{ address }}</h1>
+<h2> 模板 </h2>
+my_int : {{ my_int }}
+<br>
+my_str : {{ my_str }}
+<br>
+my_list : {{ my_list }}
+<br>
+my_dict : {{ my_dict }}
+<hr>
+<h2>列表my_list数据</h2>
+<hr>
+{{ my_list[0] }}
+<br>
+{{ my_list.1 }}
+<hr>
+<h2> 字典my_dict数据 </h2>
+<hr>
+{{ my_dict['name'] }}
+<br>
+{{ my_dict.age }}
+<hr>
+<h2> 算术运算 </h2>
+<br>
+{{ my_list.0 + 10 }}
+<br>
+{{ my_list[0] + my_list.1 }}
 </body>
 </html>
