@@ -3,10 +3,10 @@
 import urllib.request
 import ssl
 
-https_get_url = "https://127.0.0.1:8091/get"
-https_post_url = "https://127.0.0.1:8091/post"
-# https_get_url = "https://jobs8.cn:8091/get"
-# https_post_url = "https://jobs8.cn:8091/post"
+# url_prefix = "https://jobs8.cn:8091"
+url_prefix = "https://127.0.0.1:8091"
+https_get_url = url_prefix + "/get"
+https_post_url = url_prefix + "/post"
 
 '''
 SSL 单向验证, client 验证一下服务器传过来的证书 是不是 CA 机构颁发的. 客户端 是不用上传自己的证书的
@@ -17,8 +17,8 @@ SSL 单向验证, client 验证一下服务器传过来的证书 是不是 CA �
 def custom_ssl_context():
     ca_file = "../cert/ca/ca.cer"
     ssl_context = ssl.SSLContext(ssl.PROTOCOL_TLS_CLIENT)
-    ssl_context.check_hostname = False # 是否验证域名
-    ssl_context.load_verify_locations(ca_file)
+    ssl_context.check_hostname = False  # 是否验证域名
+    ssl_context.load_verify_locations(ca_file)  # 验证 SSL证书 所用CA
     ssl_context.verify_mode = ssl.CERT_REQUIRED  # 对方必须 上传 ssl 证书 让自己验证
 
     return ssl_context

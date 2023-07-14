@@ -3,15 +3,16 @@
 import urllib.request
 import ssl
 
-# https_get_url = "https://jobs8.cn:8092/get"
-https_get_url = "https://127.0.0.1:8092/get"
-https_post_url = "https://127.0.0.1:8092/post"
+# url_prefix = "https://jobs8.cn:8092"
+url_prefix = "https://127.0.0.1:8092"
+https_get_url = url_prefix + "/get"
+https_post_url = url_prefix + "/post"
 
 
 def custom_ssl_context():
     ca_file = "../cert/ca/ca.cer"
-    key_file = "../cert/client/client.key"
     cert_file = "../cert/client/client.cer"
+    key_file = "../cert/client/client.key"
 
     ssl_context = ssl.SSLContext(ssl.PROTOCOL_TLS_CLIENT)
     ssl_context.check_hostname = False

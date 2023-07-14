@@ -13,7 +13,7 @@ def json_encode():
     data_dict = {
         'no': 1,
         'name': 'Runoob',
-        'url': 'http://www.runoob.com'
+        'url': 'https://jobs8.cn'
     }
     print(data_dict)
 
@@ -24,7 +24,7 @@ def json_encode():
 
 # json 解码,将 JSON string 转换为 Python 字典
 def json_decode():
-    json_str = "{\"no\": 1, \"name\": \"Runoob\", \"url\": \"http://www.runoob.com\"}"
+    json_str = "{\"no\": 1, \"name\": \"Runoob\", \"url\": \"https://jobs8.cn\"}"
     json_dict = json.loads(json_str)
     print(type(json_dict))
     print("json['name']: ", json_dict['name'])

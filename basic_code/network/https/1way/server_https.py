@@ -9,8 +9,8 @@ app = Flask(__name__)
 
 def get_ssl_context():
     ca_file = "../cert/ca/ca.cer"
-    key_file = "../cert/server/server.key"
     cert_file = "../cert/server/server.cer"
+    key_file = "../cert/server/server.key"
 
     ssl_context = ssl.SSLContext(ssl.PROTOCOL_TLS_SERVER)
     ssl_context.check_hostname = False
