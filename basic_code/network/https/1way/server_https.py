@@ -1,65 +1,48 @@
 #!/usr/bin/python3
 # -*- coding: utf-8 -*-
-
-# SSL 证书
-import ssl
-
-# 导入Flask套件
-from flask import Flask, request
+from flask import Flask, request  # 导入Flask套件
+import ssl  # SSL 证书
 
 # 创建Flask app物件
 app = Flask(__name__)
 
 
 def get_ssl_context():
-    CA_FILE = "../cert/ca/ca.cer"
-    KEY_FILE = "../cert/server/server.key"
-    CERT_FILE = "../cert/server/server.cer"
+    ca_file = "../cert/ca/ca.cer"
+    key_file = "../cert/server/server.key"
+    cert_file = "../cert/server/server.cer"
 
-    context = ssl.SSLContext(ssl.PROTOCOL_TLS_SERVER)
-    context.check_hostname = False
-    context.load_verify_locations(CA_FILE)
-    context.load_cert_chain(certfile=CERT_FILE, keyfile=KEY_FILE, password="C81FCCE046EE94EA")
-    context.verify_mode = ssl.CERT_NONE  # 单向验证, 客户端可以不上传自己的证书
-    # 证书密码:zxcvbnm,.
+    ssl_context = ssl.SSLContext(ssl.PROTOCOL_TLS_SERVER)
+    ssl_context.check_hostname = False
+    ssl_context.load_verify_locations(ca_file)
+    ssl_context.load_cert_chain(certfile=cert_file, keyfile=key_file, password="C81FCCE046EE94EA")
+    ssl_context.verify_mode = ssl.CERT_NONE  # 单向验证, 客户端可以不上传自己的证书
 
-    return context
-
-
-# 创建 output 输出内容
-output = [
-    {
-        "pid": "1",
-        "title": "Example01",
-        "price": 10,
-        "img": "https://picsum.photos/id/999/1200/600",
-        "isAvailable": True
-    },
-    {
-        "id": "2",
-        "title": "Example02",
-        "price": 60,
-        "img": "https://picsum.photos/id/1070/1200/600",
-        "isAvailable": True
-    }
-]
+    return ssl_context
 
 
 # 建立 giveGET 路由，回传 数据 和状态码 200
 @app.route("/get", methods=['GET'])
 def get_no_param():
-    return {"products": {"Message": "get request is suucess!", "output": output}}, 200
+    name_from_url = request.args.get('name')  # 获取 url 上传过来的参数,对 post请求也适用
+    response_dict = {}
+    if name_from_url is not None:
+        print("args name:", name_from_url)
+        response_dict["name"] = name_from_url
+    response_dict["status"] = 200
+    response_dict["msg"] = "Hello, This a message from server!"
+
+    return response_dict, 200
 
 
 @app.route("/post", methods=['POST'])
 def post_param_json():
-    print('data:', request.data)
+    # print('data:', request.data)
     params = request.get_json()  # 获取 json 格式数据
-    print("param json:\n", params)
+    # print("param json:\n", params)
     name = params["name"]  # 取其中的参数
-    item = {'name': name, 'output': output}
-    # output.append(params)
-    return item, 200
+    response_dict = {"status": 200, 'name': name, 'msg': "Hello,this is a message from server"}
+    return response_dict, 200
 
 
 if __name__ == "__main__":

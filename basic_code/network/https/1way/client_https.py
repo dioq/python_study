@@ -1,6 +1,5 @@
 #!/usr/bin/python3
 # -*- coding: utf-8 -*-
-
 import urllib.request
 import ssl
 
@@ -15,31 +14,30 @@ SSL 单向验证, client 验证一下服务器传过来的证书 是不是 CA �
 
 
 # 自己创建的 CA
-def getSSLContext():
-    CA_FILE = "../cert/ca/ca.crt"
-    context = ssl.SSLContext(ssl.PROTOCOL_TLS_CLIENT)
-    context.check_hostname = False
-    context.load_verify_locations(CA_FILE)
-    context.verify_mode = ssl.CERT_REQUIRED  # 对方必须 上传 ssl 证书 让自己验证
+def custom_ssl_context():
+    ca_file = "../cert/ca/ca.cer"
+    ssl_context = ssl.SSLContext(ssl.PROTOCOL_TLS_CLIENT)
+    ssl_context.check_hostname = False # 是否验证域名
+    ssl_context.load_verify_locations(ca_file)
+    ssl_context.verify_mode = ssl.CERT_REQUIRED  # 对方必须 上传 ssl 证书 让自己验证
 
-    return context
+    return ssl_context
 
 
 # 系统默认的 CA
-def ignoreSSLContext():
-    context = ssl.SSLContext(ssl.PROTOCOL_TLS_CLIENT)
-    context.check_hostname = False
-    context.verify_mode = ssl.CERT_NONE
+def system_ssl_context():
+    ssl_context = ssl.SSLContext(ssl.PROTOCOL_TLS_CLIENT)
+    ssl_context.check_hostname = False
+    ssl_context.verify_mode = ssl.CERT_REQUIRED  # 对方必须 上传 ssl 证书 让自己验证
 
-    return context
+    return ssl_context
 
 
 # 测试 get 请求
-def getFunc():
-    # 验证 服务器证书是否是 CA 证书
-    # context = getSSLContext()
-    # 单向验证 可以忽略证书
-    context = ignoreSSLContext()
+def get_func():
+    # 单向验证 服务器证书是否是 CA 签发的
+    # context = system_ssl_context() # SSL 证书得是CA机构颁发的
+    context = custom_ssl_context()  # SSL 证书 是自己模拟的 CA 签发的
 
     try:
         request = urllib.request.Request(https_get_url)
@@ -51,11 +49,10 @@ def getFunc():
 
 
 # 测试 post 请求 参数为 json
-def postFunc():
-    # 验证 服务器证书是否是 CA 证书
-    # context = getSSLContext()
-    # 单向验证 可以忽略证书
-    context = ignoreSSLContext()
+def post_func():
+    # 单向验证 服务器证书是否是 CA 证书
+    # context = system_ssl_context() # SSL 证书得是CA机构颁发的
+    context = custom_ssl_context()  # SSL 证书 是自己模拟的 CA 签发的
 
     headers = {
         "User-Agent": "iOS",
@@ -64,10 +61,10 @@ def postFunc():
         "Content-Type": "application/json",
         "Connection": "keep-alive"
     }
-    data = "{\"name\": \"JOJO999\",\"age\": 18}"
-    datas = data.encode('utf-8')
+    param_str = "{\"name\": \"JOJO999\",\"age\": 18}"
+    data_bytes = param_str.encode('utf-8')
     try:
-        request = urllib.request.Request(url=https_post_url, data=datas, headers=headers)
+        request = urllib.request.Request(url=https_post_url, data=data_bytes, headers=headers)
         res = urllib.request.urlopen(request, context=context)
         print(res.code)
         print(res.read().decode("utf-8"))
@@ -76,5 +73,5 @@ def postFunc():
 
 
 if __name__ == '__main__':
-    getFunc()
-    # postFunc()
+    get_func()
+    post_func()

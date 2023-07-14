@@ -30,11 +30,11 @@ def post_test():
     json_str = str(request.data, encoding='utf-8')
     json_dict = json.loads(json_str)
     # print("json_dict:\n",  json_dict)
-    # 获取 body 中的参数 address
-    address = json_dict["address"]
-    print("param from body json:" + address)
+    # 获取 body 中的参数 name
+    name = json_dict["name"]
+    print("param from body json:" + name)
 
-    response_dict = {"status": 200, "address": address, "msg": "Hello, This a message from server!"}
+    response_dict = {"status": 200, "name": name, "msg": "Hello, This a message from server!"}
     return response_dict, 200
 
 
@@ -44,11 +44,11 @@ def post_form_test():
     print("request.data:", request.data)
     print("request.form:", request.form)
 
-    # body 从 body 里提取 form 数据
-    address = request.form["address"]
-    print("param from body form:" + address)
+    # 提取 form 数据
+    name = request.form["name"]
+    print("param from body form:" + name)
 
-    response_dict = {"status": 200, "address": address, "msg": "Hello, This a message from server!"}
+    response_dict = {"status": 200, "name": name, "msg": "Hello, This a message from server!"}
     return response_dict, 200
 
 

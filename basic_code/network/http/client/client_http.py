@@ -12,7 +12,8 @@ def get_request(url):
         "Accept": "*/*",
         "Connection": "keep-alive"
     }
-    response = requests.get(url=url, headers=headers)
+    new_url = url + "?name=JOJO"
+    response = requests.get(url=new_url, headers=headers)
     if response.status_code == 200:
         print("请求成功!")
         print(response.text)
@@ -31,7 +32,7 @@ def post_json_request(url):
         "Connection": "keep-alive"
     }
 
-    param_dict = {"name": "JOJO", "age": 25, "address": "Beijing"}
+    param_dict = {"name": "JOJO", "age": 25}
     json_str = json.dumps(param_dict)
     data_bytes = bytes(json_str, encoding="utf8")
     response = requests.post(url=url, data=data_bytes, headers=headers, verify=False)  # 不验证 服务器 ssl 证书
@@ -54,7 +55,7 @@ def post_form_request(url):
         "Connection": "keep-alive"
     }
 
-    param_form = "name=JOJO&age=25&address=Beijing"
+    param_form = "name=JOJO&age=25&name=Beijing"
     data_bytes = bytes(param_form, encoding="utf8")
     response = requests.post(url=url, data=data_bytes, headers=headers, verify=False)  # 不验证 服务器 ssl 证书
     if response.status_code == 200:
