@@ -79,9 +79,9 @@ def download(filename):
 
 
 # 显示图片
-@app.route("/image/<filename>", methods=['GET'])
+@app.route("/images/<filename>", methods=['GET'])
 def show_image(filename):
-    file_path = "./files/" + filename
+    file_path = "./images/" + filename
     # as_attachment : True 下载文件, False 不下载文件
     return send_file(file_path, as_attachment=False)
 
