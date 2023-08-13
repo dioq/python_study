@@ -28,7 +28,7 @@ def hook_code(uc, address, size, user_data):
 
 
 # Test ARM
-def test_arm():
+def test_aarch64():
     print("Emulate AArch64 code")
     try:
         # Initialize emulator in AArch64 mode
@@ -70,5 +70,5 @@ def test_arm():
 
 
 if __name__ == '__main__':
-    test_arm()
+    test_aarch64();
     print("=" * 26)
