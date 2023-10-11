@@ -20,12 +20,13 @@ def test():
     person.age = 0x20
     person.email = "zhendong2011@live.cn"
 
-    # 序列化Person对象为二进制字符串
+    # 序列化Person对象为二进制数据
     serialized_person = person.SerializeToString()
+    # print(type(serialized_person))
     print("序列化后的数据:")
     show_binary_by_hex(serialized_person)
 
-    # 反序列化二进制字符串为一个新的Person对象
+    # 反序列化二进制数据为一个新的Person对象
     new_person = person_pb2.Person()
     new_person.ParseFromString(serialized_person)
 
