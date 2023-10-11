@@ -5,7 +5,8 @@ from MyQR import myqr
 from PIL import Image
 
 
-def QR_With_FullBackground_Img(link="https://jobs8.cn:9000", background_picture="BackgroundIMG.png",
+def QR_With_FullBackground_Img(link="https://jobs8.cn:9000",
+                               background_picture="BackgroundIMG.png",
                                outputput_file="output_code_with_background_png.png"):
     # 图片布满整个二维码
     myqr.run(
@@ -20,11 +21,11 @@ def QR_With_FullBackground_Img(link="https://jobs8.cn:9000", background_picture=
     )
 
 
-def QR_With_Central_Img(link="https://jobs8.cn:9000", central_picture="BackgroundIMG.png",
+def QR_With_Central_Img(link="https://jobs8.cn:9000",
+                        central_picture="BackgroundIMG.png",
                         outputput_file="output_code_with_central_png.png"):
     # 图片在二维码中心位置
-    qr = qrcode.QRCode(
-        version=5, error_correction=qrcode.constants.ERROR_CORRECT_H, box_size=8, border=4)
+    qr = qrcode.QRCode(version=5, error_correction=qrcode.constants.ERROR_CORRECT_H, box_size=8, border=4)
     qr.add_data(link)
     qr.make(fit=True)
     img = qr.make_image()
@@ -75,8 +76,10 @@ if __name__ == '__main__':
     # link: url
     # central_picture: central picture filename
     # outputput_file: output filename
-    QR_With_Central_Img(link=url, central_picture="BackgroundIMG.png", outputput_file="output_code_with_central_png.png")
+    QR_With_Central_Img(link=url, central_picture="BackgroundIMG.png",
+                        outputput_file="output_code_with_central_png.png")
 
     # link: url
     # outputput_file: output filename
-    QR_Single_Code(link="itms-services://?action=download-manifest&url=https://jobs8.cn:9000/download.plist", outputput_file="output_code_simple.png")
+    QR_Single_Code(link="itms-services://?action=download-manifest&url=https://jobs8.cn:9000/download.plist",
+                   outputput_file="output_code_simple.png")
