@@ -13,6 +13,7 @@ def index():
     return render_template(path)  # 加入变量传递
 
 
+# 文件下载功能
 @app.route("/download/<filename>", methods=["GET"])
 def download(filename):
     file_path = "./files/" + filename
@@ -20,7 +21,6 @@ def download(filename):
     return send_file(file, as_attachment=True)
 
 
-# 实现通过浏览器下载并安装 安装包
 if __name__ == "__main__":
     # iOS 13 后 ssl 证书必须得是 CA机构签发的
     app.run(host="0.0.0.0", port=9000, debug=True, ssl_context=('./cert/server.pem', './cert/server.key'))

@@ -11,3 +11,4 @@ protoc xxx.proto --python_out=[outpath]
 
 --python_out        编译成 python 类
 --objc_out          编译成 Objective-C 类
+--java_out          编译成 java 类
