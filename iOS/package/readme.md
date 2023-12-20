@@ -15,13 +15,13 @@ python代码 实现一个文件下载的接口
 ## Safari 浏览器下载并安装ipa包
 
 制作一个 html 网页, 从网页里下载一个 plist文件
-<a class="blink ios" href="itms-services://?action=download-manifest&url=https://jobs8.cn:9000/download/install.plist">
+<a class="blink ios" href="itms-services://?action=download-manifest&url=https://jobs8.cn:9000/download/manifest.plist">
     iOS App 在线安装
 </a>
 
 ## iOS app 内下载并安装ipa包
 
-NSString *scheme = @"itms-services://?action=download-manifest&url=https://jobs8.cn:9000/download/install.plist";
+NSString *scheme = @"itms-services://?action=download-manifest&url=https://jobs8.cn:9000/download/manifest.plist";
 NSURL *url = [NSURL URLWithString:scheme];
 UIApplication *application = [UIApplication sharedApplication];
 [application openURL:url options:@{} completionHandler:^(BOOL success) {
