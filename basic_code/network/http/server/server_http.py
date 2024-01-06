@@ -1,5 +1,5 @@
-#!/usr/bin/python3
-# -*- coding: utf-8 -*-
+#!/usr/bin/env python3
+# -*- coding: UTF-8 -*-
 from flask import Flask, request, send_file  # 导入Flask套件
 import json  # 处理 json 数据
 

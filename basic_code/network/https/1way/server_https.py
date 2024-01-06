@@ -1,5 +1,5 @@
-#!/usr/bin/python3
-# -*- coding: utf-8 -*-
+#!/usr/bin/env python3
+# -*- coding: UTF-8 -*-
 from flask import Flask, request  # 导入Flask套件
 import ssl  # SSL 证书
 
