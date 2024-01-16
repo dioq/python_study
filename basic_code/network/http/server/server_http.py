@@ -38,30 +38,24 @@ def post_test():
     return response_dict, 200
 
 
-# 接口 post, body 格式为 form
-@app.route("/postform", methods=['POST'])
-def post_form_test():
-    print("request.data:", request.data)
+# 接收 form 表单(可以实现接收文件)
+@app.route('/form', methods=['POST'])
+def form():
+    print("request.data:", len(request.data))
     print("request.form:", request.form)
+    # 遍历所有的 FILE 类型表单
+    for file in request.files:
+        file_storage = request.files[file]
+        filename = file_storage.filename
+        print("filename:", filename)
+        file_path = "./files/" + filename  # 文件在服务器保存的路径
+        file_storage.save(file_path)  # 文件数据保存到磁盘
 
-    # 提取 form 数据
-    name = request.form["name"]
-    print("param from body form:" + name)
+    # 遍历所有的 TEXT 类型表单
+    for key in request.form.to_dict():
+        print(key, ":", request.form.get(key))
 
-    response_dict = {"status": 200, "name": name, "msg": "Hello, This a message from server!"}
-    return response_dict, 200
-
-
-# 上传文件
-@app.route('/upload', methods=['POST'])
-def upload():
-    print("Posted file: {}".format(request.files['file']))
-    file_storage = request.files['file']  # 获取上传过来的文件数据
-    file_name = file_storage.filename  # 上传的文件名
-    file_path = "./files/" + file_name  # 文件在服务器保存的路径
-    file_storage.save(file_path)  # 文件数据保存到磁盘
-
-    response_dict = {"status": 200, "msg": "file uploaded successfully!"}
+    response_dict = {"status": 200, "msg": "form data received success!"}
     return response_dict, 200
 
 
@@ -87,4 +81,4 @@ def show_image(filename):
 
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=8090, debug=True)
+    app.run(host="0.0.0.0", port=9000, debug=True)

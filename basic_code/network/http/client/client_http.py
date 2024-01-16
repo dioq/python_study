@@ -23,7 +23,7 @@ def get_request(url):
 
 
 # 测试 post 请求 参数为 json
-def post_json_request(url):
+def post_request(url):
     headers = {
         "User-Agent": "iOS",
         "Accept-Encoding": "gzip, deflate, br",
@@ -45,35 +45,23 @@ def post_json_request(url):
         print("请求失败!")
 
 
-# 测试 post 请求 url 和 body 里都有参数
-def post_form_request(url):
-    headers = {
-        "User-Agent": "iOS",
-        "Accept-Encoding": "gzip, deflate, br",
-        "Accept": "*/*",
-        "Content-Type": "application/x-www-form-urlencoded",
-        "Connection": "keep-alive"
+# 提交 form 表单(可以实现文件上传)
+def submit(url):
+    # TEXT
+    param = {
+        "name": "JOJO",
+        "age": 25,
+        "address": "Beijing"
     }
 
-    param_form = "name=JOJO&age=25&name=Beijing"
-    data_bytes = bytes(param_form, encoding="utf8")
-    response = requests.post(url=url, data=data_bytes, headers=headers, verify=False)  # 不验证 服务器 ssl 证书
-    if response.status_code == 200:
-        print("请求成功!")
-        print(response.text)
-    else:
-        print(response.status_code)
-        print("请求失败!")
-
-
-def upload_file(url):
+    # FILE
     filename = "t1.png"
     file_path = "./files/" + filename
     fd = open(file_path, "rb")
 
     files = {"file": fd}
 
-    response = requests.post(url, files=files)
+    response = requests.post(url=url, data=param, files=files, verify=False)  # 不验证 服务器 ssl 证书
     if response.status_code == 200:
         print("请求成功!")
         print(response.text)
@@ -85,12 +73,10 @@ def upload_file(url):
 
 
 if __name__ == "__main__":
-    test_get_url = "http://127.0.0.1:8090/get"
-    test_post_json_url = "http://127.0.0.1:8090/post"
-    test_post_form_url = "http://127.0.0.1:8090/postform"
-    test_upload_url = "http://127.0.0.1:8090/upload"
-    test_download_url = "http://127.0.0.1:8090/download/test.png"
-    get_request(test_get_url)
-    # post_json_request(test_post_json_url)
-    # post_form_request(test_post_form_url)
-    # upload_file(test_upload_url)
+    test_get_url = "http://127.0.0.1:9000/get"
+    test_post_json_url = "http://127.0.0.1:9000/post"
+    test_download_url = "http://127.0.0.1:9000/download/test.png"
+    test_formdata_url = "http://127.0.0.1:9000/form"
+    # get_request(test_get_url)
+    # post_request(test_post_json_url)
+    submit(test_formdata_url)
