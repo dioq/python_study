@@ -43,6 +43,7 @@ def post_test():
 def form():
     print("request.data:", len(request.data))
     print("request.form:", request.form)
+    response_dict = {}
     # 遍历所有的 FILE 类型表单
     for file in request.files:
         file_storage = request.files[file]
@@ -50,12 +51,13 @@ def form():
         print("filename:", filename)
         file_path = "./files/" + filename  # 文件在服务器保存的路径
         file_storage.save(file_path)  # 文件数据保存到磁盘
+        response_dict[filename] = "FILE received success!"
 
     # 遍历所有的 TEXT 类型表单
     for key in request.form.to_dict():
         print(key, ":", request.form.get(key))
+        response_dict[key] = "TEXT received success!"
 
-    response_dict = {"status": 200, "msg": "form data received success!"}
     return response_dict, 200
 
 

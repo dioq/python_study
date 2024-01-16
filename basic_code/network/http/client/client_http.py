@@ -55,7 +55,7 @@ def submit(url):
     }
 
     # FILE
-    filename = "t1.png"
+    filename = "test.png"
     file_path = "./files/" + filename
     fd = open(file_path, "rb")
 
@@ -72,6 +72,20 @@ def submit(url):
     fd.close()
 
 
+# 文件下载
+def download(url):
+    response = requests.get(url=url)
+    if response.status_code == 200:
+        filename = "test.png"
+        file_path = "./files/" + filename
+        fd = open(file_path, "wb")
+        fd.write(response.content)
+        fd.close()
+    else:
+        print(response.status_code)
+        print("请求失败!")
+
+
 if __name__ == "__main__":
     test_get_url = "http://127.0.0.1:9000/get"
     test_post_json_url = "http://127.0.0.1:9000/post"
@@ -79,4 +93,5 @@ if __name__ == "__main__":
     test_formdata_url = "http://127.0.0.1:9000/form"
     # get_request(test_get_url)
     # post_request(test_post_json_url)
-    submit(test_formdata_url)
+    # submit(test_formdata_url)
+    # download(test_download_url)
