@@ -9,11 +9,11 @@ app = Flask(__name__)
 """
 
 
-@app.route('/t2', methods=['GET'])
+@app.route("/t2", methods=["GET"])
 def index():
-    username = request.args.get('username')
+    username = request.args.get("username")
     print(username)
-    password = request.args.get('password')
+    password = request.args.get("password")
     print(password)
 
     if username == "Lizhendong" and password == "123":
@@ -22,7 +22,7 @@ def index():
         return "<html><body>Welcome!</body></html>"
 
 
-if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=9000)
+if __name__ == "__main__":
+    app.run(host="0.0.0.0", port=9000)
 
 # http://127.0.0.1:9000/t2?username=Lizhendong&password=123
