@@ -10,7 +10,7 @@ def get_request(url):
         "User-Agent": "iOS",
         "Accept-Encoding": "gzip, deflate, br",
         "Accept": "*/*",
-        "Connection": "keep-alive"
+        "Connection": "keep-alive",
     }
     new_url = url + "?name=JOJO"
     response = requests.get(url=new_url, headers=headers)
@@ -29,13 +29,15 @@ def post_request(url):
         "Accept-Encoding": "gzip, deflate, br",
         "Accept": "*/*",
         "Content-Type": "application/json",
-        "Connection": "keep-alive"
+        "Connection": "keep-alive",
     }
 
     param_dict = {"name": "JOJO", "age": 25}
     json_str = json.dumps(param_dict)
     data_bytes = bytes(json_str, encoding="utf8")
-    response = requests.post(url=url, data=data_bytes, headers=headers, verify=False)  # 不验证 服务器 ssl 证书
+    response = requests.post(
+        url=url, data=data_bytes, headers=headers, verify=False
+    )  # 不验证 服务器 ssl 证书
 
     if response.status_code == 200:
         print("请求成功!")
@@ -48,11 +50,7 @@ def post_request(url):
 # 提交 form 表单(可以实现文件上传)
 def submit(url):
     # TEXT
-    param = {
-        "name": "JOJO",
-        "age": 25,
-        "address": "Beijing"
-    }
+    param = {"name": "JOJO", "age": 25, "address": "Beijing"}
 
     # FILE
     filename = "test.png"
@@ -61,7 +59,9 @@ def submit(url):
 
     files = {"file": fd}
 
-    response = requests.post(url=url, data=param, files=files, verify=False)  # 不验证 服务器 ssl 证书
+    response = requests.post(
+        url=url, data=param, files=files, verify=False
+    )  # 不验证 服务器 ssl 证书
     if response.status_code == 200:
         print("请求成功!")
         print(response.text)

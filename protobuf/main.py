@@ -6,7 +6,7 @@ import person_pb2
 def show_binary_by_hex(data):
     lt = list(data)
     for i in range(0, len(lt)):
-        item = '{:02X} '.format(lt[i])
+        item = "{:02X} ".format(lt[i])
         print(item, end="")
         if (i + 1) % 0x10 == 0:
             print("")
@@ -31,8 +31,10 @@ def test():
     new_person.ParseFromString(serialized_person)
 
     # 输出新的Person对象的字段值
-    print(f"反序列化后的数据：姓名={new_person.name}, 年龄={new_person.age}, 邮箱={new_person.email}")
+    print(
+        f"反序列化后的数据：姓名={new_person.name}, 年龄={new_person.age}, 邮箱={new_person.email}"
+    )
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     test()

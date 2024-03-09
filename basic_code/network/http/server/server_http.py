@@ -7,9 +7,11 @@ app = Flask(__name__)  # 创建Flask app物件
 
 
 # 接口 get
-@app.route("/get", methods=['GET'])
+@app.route("/get", methods=["GET"])
 def get_test():
-    name_from_url = request.args.get('name')  # 获取 url 上传过来的参数,对 post请求也适用
+    name_from_url = request.args.get(
+        "name"
+    )  # 获取 url 上传过来的参数,对 post请求也适用
     response_dict = {}
     if name_from_url is not None:
         print("args name:", name_from_url)
@@ -21,25 +23,29 @@ def get_test():
 
 
 # 接口 post, body 格式为 json
-@app.route("/post", methods=['POST'])
+@app.route("/post", methods=["POST"])
 def post_test():
     print("request.data:", request.data)  # 传过来的 binary data
 
     # body 数据解析成 json
     # json_dict = request.get_json()
-    json_str = str(request.data, encoding='utf-8')
+    json_str = str(request.data, encoding="utf-8")
     json_dict = json.loads(json_str)
     # print("json_dict:\n",  json_dict)
     # 获取 body 中的参数 name
     name = json_dict["name"]
     print("param from body json:" + name)
 
-    response_dict = {"status": 200, "name": name, "msg": "Hello, This a message from server!"}
+    response_dict = {
+        "status": 200,
+        "name": name,
+        "msg": "Hello, This a message from server!",
+    }
     return response_dict, 200
 
 
 # 接收 form 表单(可以实现接收文件)
-@app.route('/form', methods=['POST'])
+@app.route("/form", methods=["POST"])
 def form():
     print("request.data:", len(request.data))
     print("request.form:", request.form)
@@ -75,7 +81,7 @@ def download(filename):
 
 
 # 显示图片
-@app.route("/images/<filename>", methods=['GET'])
+@app.route("/images/<filename>", methods=["GET"])
 def show_image(filename):
     file_path = "./images/" + filename
     # as_attachment : True 下载文件, False 不下载文件

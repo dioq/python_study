@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
 # -*- coding: UTF-8 -*-
-
 from unicorn import *
 from unicorn.arm64_const import *
 
@@ -10,10 +9,10 @@ MEMORY = 2 * 1024 * 1024  # 内存
 STACK = 0x80000000 + 0x10000 * 6  # 栈
 
 # code to be emulated
-'''
+"""
 add x0, x1, x2
 sub x0, x0, x3
-'''
+"""
 ARM_CODE = b"\x20\x00\x02\x8B\x00\x00\x03\xCB"
 
 
@@ -60,15 +59,15 @@ def test_aarch64():
         x1 = mu.reg_read(UC_ARM64_REG_X1)
         x2 = mu.reg_read(UC_ARM64_REG_X2)
         x3 = mu.reg_read(UC_ARM64_REG_X3)
-        print('x0 = 0x%lx' % x0)
-        print('x1 = 0x%lx' % x1)
-        print('x2 = 0x%lx' % x2)
-        print('x3 = 0x%lx' % x3)
+        print("x0 = 0x%lx" % x0)
+        print("x1 = 0x%lx" % x1)
+        print("x2 = 0x%lx" % x2)
+        print("x3 = 0x%lx" % x3)
 
     except UcError as e:
         print("ERROR: %s" % e)
 
 
-if __name__ == '__main__':
-    test_aarch64();
+if __name__ == "__main__":
+    test_aarch64()
     print("=" * 26)

@@ -33,6 +33,6 @@ def query():
     conn.close()  # 关闭数据库连接
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     insert()
     query()
