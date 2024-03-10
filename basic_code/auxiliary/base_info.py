@@ -6,9 +6,9 @@ import sys
 
 def testFunc():
     print("file path : ", __file__)
-    print("文件名 :", os.path.basename(__file__))
-    print("函数名 :", __name__)
-    print("行号   :", sys._getframe().f_lineno)
+    print("file name :", os.path.basename(__file__))
+    print("function name :", sys._getframe().f_code.co_name)
+    print("line :", sys._getframe().f_lineno)
 
 
 if __name__ == "__main__":
