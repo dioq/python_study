@@ -9,9 +9,8 @@ app = Flask(__name__)  # 创建Flask app物件
 # 接口 get
 @app.route("/get", methods=["GET"])
 def get_test():
-    name_from_url = request.args.get(
-        "name"
-    )  # 获取 url 上传过来的参数,对 post请求也适用
+    # 获取 url 上传过来的参数,对 post请求也适用
+    name_from_url = request.args.get("name")
     response_dict = {}
     if name_from_url is not None:
         print("args name:", name_from_url)
@@ -31,10 +30,10 @@ def post_test():
     # json_dict = request.get_json()
     json_str = str(request.data, encoding="utf-8")
     json_dict = json.loads(json_str)
-    # print("json_dict:\n",  json_dict)
+    print("json_dict:\n", json_dict)
     # 获取 body 中的参数 name
     name = json_dict["name"]
-    print("param from body json:" + name)
+    print("name:" + name)
 
     response_dict = {
         "status": 200,
@@ -50,6 +49,14 @@ def form():
     print("request.data:", len(request.data))
     print("request.form:", request.form)
     response_dict = {}
+
+    print("-----------------> TEXT <-----------------")
+    # 遍历所有的 TEXT 类型表单
+    for key in request.form.to_dict():
+        print(key, " : ", request.form.get(key))
+        response_dict[key] = "TEXT received success!"
+
+    print("-----------------> FILE <-----------------")
     # 遍历所有的 FILE 类型表单
     for file in request.files:
         file_storage = request.files[file]
@@ -58,11 +65,6 @@ def form():
         file_path = "./files/" + filename  # 文件在服务器保存的路径
         file_storage.save(file_path)  # 文件数据保存到磁盘
         response_dict[filename] = "FILE received success!"
-
-    # 遍历所有的 TEXT 类型表单
-    for key in request.form.to_dict():
-        print(key, ":", request.form.get(key))
-        response_dict[key] = "TEXT received success!"
 
     return response_dict, 200
 
@@ -89,4 +91,4 @@ def show_image(filename):
 
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=9000, debug=True)
+    app.run(host="0.0.0.0", port=8090, debug=True)
