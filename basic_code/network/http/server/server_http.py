@@ -2,6 +2,7 @@
 # -*- coding: UTF-8 -*-
 from flask import Flask, request, send_file  # 导入Flask套件
 import json  # 处理 json 数据
+import os
 
 app = Flask(__name__)  # 创建Flask app物件
 
@@ -74,12 +75,17 @@ def form():
 def download(filename):
     response_dict = {}
     if filename is None:
-        response_dict["status"] = -10
-        response_dict["msg"] = "File name is null"
-        return response_dict
+        response_dict["status"] = -1
+        response_dict["msg"] = "file name is null"
+        return response_dict, 301
 
     file_path = "./files/" + filename
-    return send_file(file_path, as_attachment=True)
+    if os.path.exists(file_path):
+        return send_file(file_path, as_attachment=True), 200
+    else:
+        response_dict["status"] = -2
+        response_dict["msg"] = "file is not exist!"
+        return response_dict, 302
 
 
 # 显示图片

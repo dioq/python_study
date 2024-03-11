@@ -81,17 +81,13 @@ def download(url):
         fd = open(file_path, "wb")
         fd.write(response.content)
         fd.close()
+        print("下载成功!")
     else:
-        print(response.status_code)
-        print("请求失败!")
+        print(response.text)
 
 
 if __name__ == "__main__":
-    test_get_url = "http://127.0.0.1:9000/get"
-    test_post_json_url = "http://127.0.0.1:9000/post"
-    test_download_url = "http://127.0.0.1:9000/download/test.png"
-    test_formdata_url = "http://127.0.0.1:9000/form"
-    # get_request(test_get_url)
-    # post_request(test_post_json_url)
-    # submit(test_formdata_url)
-    # download(test_download_url)
+    # get_request("http://127.0.0.1:8090/get")
+    # post_request("http://127.0.0.1:8090/post")
+    # submit("http://127.0.0.1:8090/form")
+    download("http://127.0.0.1:8090/download/test.png")
