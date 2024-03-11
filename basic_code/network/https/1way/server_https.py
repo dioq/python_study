@@ -24,7 +24,6 @@ def get_ssl_context():
     return ssl_context
 
 
-# 建立 giveGET 路由，回传 数据 和状态码 200
 @app.route("/get", methods=["GET"])
 def get_no_param():
     name_from_url = request.args.get(
