@@ -2,7 +2,9 @@
 # -*- coding: UTF-8 -*-
 from flask import Flask, make_response
 from gevent import pywsgi
-import ssl  # SSL 证书
+import gevent.ssl as ssl  # gevent 自带的ssl库 与gevent兼容性更好些
+
+# import ssl  # SSL 证书
 
 app = Flask(__name__)
 
